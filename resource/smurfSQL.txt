@@ -1,0 +1,52 @@
+DROP DATABASE IF EXISTS SmurfShop;
+CREATE DATABASE IF NOT EXISTS SmurfShop;
+USE SmurfShop;
+
+
+DROP TABLE IF EXISTS Smurf;
+CREATE TABLE Smurf (
+	id int NOT NULL,
+	name VARCHAR(50) NOT NULL,
+	size VARCHAR(50) NOT NULL,
+	price DECIMAL(6,2) NOT NULL,
+	material VARCHAR(50) NOT NULL,
+	instock INTEGER NOT NULL,
+	supplier VARCHAR(50) NOT NULL,
+	description VARCHAR(200) NOT NULL,
+	image VARCHAR(50) NOT NULL,
+	PRIMARY KEY(id) );
+    
+INSERT INTO Smurf(id,name,size,price,material,instock,supplier,image,description)
+VALUES(1,'Smurfette','Small',5.00,'Plastic',100,'Disney Export ltd.','Smurfette.jpg','Smurfette is a female protagonist Smurf. Most of the time Smurfette is portrayed as an object of admiration of many other Smurfs');
+
+INSERT INTO Smurf(id,name,size,price,material,instock,supplier,image,description)
+VALUES(2,'Papa Smurf','Small',5.50,'Plastic',100,'Disney Export ltd.','PapaSmurf.jpg','Papa Smurf is the leader, father, chief and king of the Smurfs, is skilled in making magical spells and potions');
+
+INSERT INTO Smurf(id,name,size,price,material,instock,supplier,image,description)
+VALUES(3,'Hefty Smurf','Small',5.50,'Plastic',100,'Disney Export ltd.','HeftySmurf.jpg','Hefty Smurf has incredible strength and often is seen doing a lot of the heavy work, has a tattoo of a red heart with an arrow through it');
+
+INSERT INTO Smurf(id,name,size,price,material,instock,supplier,image,description)
+VALUES(4,'Brainy Smurf','Small',5.50,'Plastic',100,'Disney Export ltd.','BrainySmurf.jpg','Brainy Smurf, considers himself the most intelligent Smurf and an expert on everything, although his actual knowledge is questionable at best');
+
+INSERT INTO Smurf(id,name,size,price,material,instock,supplier,image,description)
+VALUES(5,'Grouchy Smurf','Small',5.50,'Plastic',100,'Disney Export ltd.','GrouchySmurf.jpg','Grouchy Smurf is the misanthropic grouch of the Smurf village. His catchphrase is: I hate - something somebody else mentions');
+
+INSERT INTO Smurf(id,name,size,price,material,instock,supplier,image,description)
+VALUES(6,'Clumsy Smurf','Small',5.50,'Plastic',100,'Disney Export ltd.','ClumsySmurf.jpg','Clumsy Smurf is a somewhat dimwitted yet amiable Smurf. In some dangerous situations he is also revealed to be quite brave too');
+
+INSERT INTO Smurf(id,name,size,price,material,instock,supplier,image,description)
+VALUES(7,'Jokey Smurf','Small',5.50,'Plastic',100,'Disney Export ltd.','JokeySmurf.jpg','Jokey is the village prankster, always used the same form of joke: yellow-and red-wrapped present boxes, saying that it is a surprise');
+
+INSERT INTO Smurf(id,name,size,price,material,instock,supplier,image,description)
+VALUES(8,'Chef Smurf','Small',5.50,'Plastic',100,'Disney Export ltd.','ChefSmurf.jpg','Chef Smurf is the Smurf village chef. He knows dozens of recipes and cooks many dishes');
+
+INSERT INTO Smurf(id,name,size,price,material,instock,supplier,image,description)
+VALUES(9,'Vanity Smurf','Small',5.50,'Plastic',100,'Disney Export ltd.','VanitySmurf.jpg','Vanity Smurf is the epitome of a narcissist. He has a flower in his hat, and he often holds a hand mirror, staring into his own reflection');
+
+
+INSERT INTO Smurf(id,name,size,price,material,instock,supplier,image,description)
+VALUES(10,'Handy Smurf','Small',5.50,'Plastic',100,'Disney Export ltd.','HandySmurf.jpg','Handy Smurf is the handyman of the Smurfs. He helps fix things in the village and is known for his amazing technological inventions');
+
+SELECT * FROM smurf;
+
+
