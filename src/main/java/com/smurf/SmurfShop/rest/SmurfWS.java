@@ -62,7 +62,8 @@ public class SmurfWS {
 		System.out.println("----------id is " + smurf.getId());
 		smurfDao.update(smurf);
 		System.out.println("----------id is " + smurf.getId() + smurf.getInstock());
-		
+		//this is test jenkins
+		System.out.println("----------id is " + smurf.getId());
 		return Response.status(200).entity(smurf).build();
 	}
 
