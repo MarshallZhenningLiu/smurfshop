@@ -2,7 +2,7 @@ pipeline {
     agent { label "windows"}
 
     tools{ maven "maven"
-            jdk "jdk"
+            jdk "java"
             }
     stages {
         stage('Build') {
