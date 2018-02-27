@@ -1,0 +1,22 @@
+pipeline {
+    agent any
+
+    tools{ maven "maven"
+            jdk "java"
+            }
+    stages {
+        stage('Build') {
+            steps {
+                bat "mvn install"
+            }
+            
+            post {
+                always {
+                    junit '**/build/test-results/test/*.xml'
+                }
+            }
+        }
+    
+ 
+    }
+}
