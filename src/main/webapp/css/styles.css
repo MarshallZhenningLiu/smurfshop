@@ -1,26 +1,32 @@
 * {
 	border:0px solid gray;
-	margin: 0 0 0 0;
+	margin: 5px 0 5px 0;
 	font-family: 'Montserrat', sans-serif;
 }
 
 #container{ width: 80%;  margin: 0 auto; }
 .left{ float:left;}
+.shoptitle{ padding-left:130px; padding-top:20px;
+border:0px solid gray;
+
+}
 .centerTitle{ text-align: center;}
-img{ max-width: 90px; max-height:140px; width: auto; height: auto;}
+
 
 .btn-crud{ width: 33%;}
 label{    display: inline-block;    float: left;    clear: left;    width: 130px;    text-align: right;	margin-right: 20px;}
-input {	width: 300px;  display: inline-block;  float: left; padding-left: 5px;}
+.input-dialogbox {	width: 300px;  display: inline-block;  float: left; padding-left: 5px; border:1px solid gray;}
 
+.center {    display: block;    margin-left: auto;    margin-right: auto;    width: 80%;}
 
-
-
-
+.smurf-image{ width: 60%; height:80%; border: 0px solid gray;}
+.card{border: 0px solid gray;}
 
 
 
 /* -----------------------------------------------------------apply to all pages 
+
+img{ max-width: 90px; max-height:140px; width: auto; height: auto;}
 * {
 	border:0px solid gray;
 	margin: 0 0 0 0;

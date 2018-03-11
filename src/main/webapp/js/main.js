@@ -8,6 +8,7 @@ this will open a new chrome browser which allow access to no 'access-control-all
 var rootURL = "http://localhost:8080/SmurfShop/rest/smurfs";
 
 
+
 // Helper function to serialize all the form fields into a JSON string
 var formToJSON=function () {
 	
@@ -25,7 +26,7 @@ var showAllSmurfs=function () {
 		type: 'GET',	url: rootURL,	data: { get_param: 'value' }, dataType: "json", 	
 		success: function(data){
 			$.each(data, function(index,element){
-				$('#productList .row').append('<div class="col-sm-6 col-md-4 col-lg-3"> <div class="card"><img src="' +element.image+ '" ><p>Name: ' + element.name +'</p><p>Price: '+element.price+'</p></div></div>');				
+				$('#productList .row').append('<div class="col-sm-6 col-md-4 col-lg-3"> <div class="card "><img src="' +element.image+ '" class="smurf-image center"><p class="center">Name: ' + element.name +'</p><p class="center">Price: '+element.price+'</p><p class="center">'+element.description +'</p></div></div>');				
 			});
 		}			
 	});
@@ -55,6 +56,7 @@ var deleteSmurf=function () {
 	$.ajax({
 		type: 'DELETE',	url: rootURL+'/'+$('#smurf_id').val(),	
 		success: function(data, textStatus, jqXHR){
+			showDataTable();			
 			alert('smurf deleted successfully');             
 		},
 		error: function(jqXHR, textStatus, errorThrown){
@@ -68,6 +70,7 @@ var createSmurf=function () {
 	$.ajax({
 		type: 'POST',contentType: 'application/json',url: rootURL,dataType: "json",	data: formToJSON(),
 		success: function(data, textStatus, jqXHR){
+			showDataTable();
 			alert('smurf created successfully');             
 		},
 		error: function(jqXHR, textStatus, errorThrown){
@@ -80,7 +83,8 @@ var updateSmurf=function () {
 	$.ajax({
 		type: 'PUT', contentType: 'application/json', url: rootURL+'/'+$('#smurf_id').val(),dataType: "json",data: formToJSON(),	
 		success: function(data, textStatus, jqXHR){
-			alert('smurf updated successfully');             
+			showDataTable();
+			alert('smurf updated successfully');  
 		},
 		error: function(jqXHR, textStatus, errorThrown){
 			alert('updateSmurf error: ' + textStatus);
@@ -115,18 +119,18 @@ $(document).ready(function(){
 	});
 	$('#saveButton').click(function() {
 		createSmurf();
-		showDataTable();
+		//showDataTable();
 		
 	});
 
 	$('#updateButton').click(function() {
 		updateSmurf();
-		showDataTable();
+		//showDataTable();
 		
 	});
 	$('#deleteButton').click(function() {
 		deleteSmurf();
-		showDataTable();
+		//showDataTable();
 		
 	});
 	
