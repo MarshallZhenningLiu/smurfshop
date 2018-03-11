@@ -31,11 +31,18 @@ public class SmurfDAO {
         return query.getResultList();
     }
 	
+	public List<Smurf> getSmurfMaxId() {
+		Query query=em.createQuery("SELECT w FROM Smurf w ORDER BY ID DESC LIMIT 1");
+        return query.getResultList();        
+	}
+	
 	public Smurf getSmurf(int id ) {
         return em.find(Smurf.class, id);
     }
 	
 	public void save(Smurf smurf){
+		
+		
 		em.persist(smurf);
 	}
 	

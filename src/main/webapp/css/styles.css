@@ -1,5 +1,5 @@
 * {
-	border:1px solid gray;
+	border:0px solid gray;
 	margin: 0 0 0 0;
 	font-family: 'Montserrat', sans-serif;
 }
@@ -9,6 +9,9 @@
 .centerTitle{ text-align: center;}
 img{ max-width: 90px; max-height:140px; width: auto; height: auto;}
 
+.btn-crud{ width: 33%;}
+label{    display: inline-block;    float: left;    clear: left;    width: 130px;    text-align: right;	margin-right: 20px;}
+input {	width: 300px;  display: inline-block;  float: left; padding-left: 5px;}
 
 
 
@@ -17,41 +20,6 @@ img{ max-width: 90px; max-height:140px; width: auto; height: auto;}
 
 
 
-
-
-/*---------carousel-----------*/
-div.carousel-container {
-
-}
-div.carousel-container > * {
-	display: inline-block;
-	vertical-align: middle;
-}
-div.carousel-container > button {
-	color: transparent;
-	border: 0px;
-	background: transparent url(./carousel-left.png);
-	height: 28px;
-	width: 17px;
-}
-div.carousel-container > button:last-of-type {
-	background-image: url(./carousel-right.png);
-}
-
-	figure.carousel {
-		height: 256px;
-		width: 256px;
-		overflow: hidden;
-	}
-		figure.carousel ul {
-			list-style-type: none;
-			margin: 0px; padding: 0px;
-			width: 1000%;
-		}
-
-		figure.carousel ul li {
-			display: inline-block;
-		}
 /* -----------------------------------------------------------apply to all pages 
 * {
 	border:0px solid gray;

@@ -7,147 +7,16 @@ this will open a new chrome browser which allow access to no 'access-control-all
 */
 var rootURL = "http://localhost:8080/SmurfShop/rest/smurfs";
 
-var currentWine;
-
-
-
-var search =function(searchKey) {
-	if (searchKey == '') 
-		findAll();
-	else
-		findByName(searchKey);
-};
-
-var newWine=function () {
-	$('#btnDelete').hide();
-	currentWine = {};
-	renderDetails(currentWine); // Display empty form
-};
-
-var findAll=function() {
-	console.log('-------findAll');
-	$.ajax({
-		type: 'GET',
-		url: rootURL,
-		dataType: "json", // data type of response
-		success: renderList
-	});
-};
-
-var findByName= function(searchKey) {
-	console.log('findByName: ' + searchKey);
-	$.ajax({
-		type: 'GET',
-		url: rootURL + '/search/' + searchKey,
-		dataType: "json",
-		success: renderList 
-	});
-};
-
-var findById= function(id) {
-	console.log('findById: ' + id);
-	$.ajax({
-		type: 'GET',
-		url: rootURL + '/' + id,
-		dataType: "json",
-		success: function(data){
-			$('#btnDelete').show();
-			console.log('findById success: ' + data.name);
-			currentWine = data;
-			renderDetails(currentWine);
-		}
-	});
-};
-
-var addWine = function () {
-	console.log('addWine');
-	$.ajax({
-		type: 'POST',
-		contentType: 'application/json',
-		url: rootURL,
-		dataType: "json",
-		data: formToJSON(),
-		success: function(data, textStatus, jqXHR){
-			alert('Wine created successfully');
-			$('#btnDelete').show();
-			$('#wineId').val(data.id);
-                        findAll();
-		},
-		error: function(jqXHR, textStatus, errorThrown){
-			alert('addWine error: ' + textStatus);
-		}
-	});
-};
-
-var updateWine= function () {
-	console.log('updateWine');
-	$.ajax({
-		type: 'PUT',
-		contentType: 'application/json',
-		url: rootURL + '/' + $('#wineId').val(),
-		dataType: "json",
-		data: formToJSON(),
-		success: function(data, textStatus, jqXHR){
-			alert('Wine updated successfully');
-                         findAll();
-		},
-		error: function(jqXHR, textStatus, errorThrown){
-			alert('updateWine error: ' + textStatus);
-		}
-	});
-};
-
-var deleteWine=function() {
-	console.log('deleteWine');
-	$.ajax({
-		type: 'DELETE',
-		url: rootURL + '/' + $('#wineId').val(),
-		success: function(data, textStatus, jqXHR){
-			alert('Wine deleted successfully');
-                         findAll();
-		},
-		error: function(jqXHR, textStatus, errorThrown){
-			alert('deleteWine error');
-		}
-	});
-};
-
-/*
-var renderList= function(data) {
-	// JAX-RS serializes an empty list as null, and a 'collection of one' as an object (not an 'array of one')
-	//var list = data == null ? [] : (data instanceof Array ? data : [data]);
-    var list=data.wine;
-	$('#wineList li').remove();
-	$.each(list, function(index, wine) {
-		$('#wineList').append('<li><a href="#" id="' + wine.id + '">'+wine.name+'</a></li>');
-	});
-};*/
-
-var renderDetails=function(wine) {
-	$('#wineId').val(wine.id);
-	$('#name').val(wine.name);
-	$('#grapes').val(wine.grapes);
-	$('#country').val(wine.country);
-	$('#region').val(wine.region);
-	$('#year').val(wine.year);
-	$('#pic').attr('src', 'pics/' + wine.picture);
-	$('#description').val(wine.description);
-};
 
 // Helper function to serialize all the form fields into a JSON string
 var formToJSON=function () {
-	var wineId = $('#wineId').val();
+	
 	return JSON.stringify({
-		"id": wineId == "" ? null : wineId, 
-		"name": $('#name').val(), 
-		"grapes": $('#grapes').val(),
-		"country": $('#country').val(),
-		"region": $('#region').val(),
-		"year": $('#year').val(),
-		"picture": currentWine.picture,
-		"description": $('#description').val()
-		});
+		"id": $('#smurf_id').val(),		"name": $('#smurf_name').val(),		"instock": $('#smurf_instock').val(),		"price": $('#smurf_price').val(),		"size": $('#smurf_size').val(),		"material": $('#smurf_material').val(),		"supplier": $('#smurf_supplier').val(),		"image": $('#smurf_image').val(),		"description": $('#smurf_description').val()		
+	});
 };
+
+
 
 //------------------------------------------------------------------------------------------------------
 //products clicked
@@ -155,8 +24,6 @@ var showAllSmurfs=function () {
 	$.ajax({
 		type: 'GET',	url: rootURL,	data: { get_param: 'value' }, dataType: "json", 	
 		success: function(data){
-			//console.log('-----showAllSmurfs' + JSON.stringify(data));
-			//$('#productList .row div').empty();
 			$.each(data, function(index,element){
 				$('#productList .row').append('<div class="col-sm-6 col-md-4 col-lg-3"> <div class="card"><img src="' +element.image+ '" ><p>Name: ' + element.name +'</p><p>Price: '+element.price+'</p></div></div>');				
 			});
@@ -164,38 +31,65 @@ var showAllSmurfs=function () {
 	});
 };
 //Admin clicked
+//https://datatables.net/examples/ajax/custom_data_flat.html
+//https://datatables.net/examples/ajax/null_data_source.html
+var admin_table = $('#adminTable').DataTable();
 var showDataTable=function () {	
+	admin_table.destroy();
+    admin_table = $('#adminTable').DataTable( {				
+		destroy: true,
+        "ajax": {
+			"type":"GET",
+            "url": rootURL,
+            "dataSrc": ""
+        },
+        "columns": [
+            { "data": "id" },			{ "data": "name" },            { "data": "instock" },            { "data": "price" },                       { "data": "size" },			{ "data": "material" },            { "data": "supplier" },
+			//edit button to open modal
+			{"defaultContent": "<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#myModal'>Edit</button>"}
+        ]
+    } );
+};
+//delete clicked
+var deleteSmurf=function () {	
 	$.ajax({
-		type: 'GET',	url: rootURL,	data: { get_param: 'value' }, dataType: "json", 	
-		success: function(data){
-			$('#smurfTable').html('');
-			
-			$('#smurfTable').DataTable( {
-				data: data,
-				columns: [
-					{ title: "id" },
-					{ title: "Position" },
-					{ title: "Office" },
-					{ title: "Name" },
-					{ title: "Position" },
-					{ title: "Office" },
-					{ title: "Extn." },
-					{ title: "Start date" },
-					{ title: "Salary" }
-				]
-			} );
-			
-			$.each(data, function(index,element){
-				$('#smurfTable').append('<p>this is test</p>');
-				//$('#productList .row').append('<div class="col-sm-6 col-md-4 col-lg-3"> <div class="card"><img src="' +element.image+ '" ><p>Name: ' + element.name +'</p><p>Price: '+element.price+'</p></div></div>');
-				
-			});
-		}		
-		
+		type: 'DELETE',	url: rootURL+'/'+$('#smurf_id').val(),	
+		success: function(data, textStatus, jqXHR){
+			alert('smurf deleted successfully');             
+		},
+		error: function(jqXHR, textStatus, errorThrown){
+			alert('deleteSmurf error: ' + textStatus);
+		}
+	});
+
+};
+//create clicked
+var createSmurf=function () {	
+	$.ajax({
+		type: 'POST',contentType: 'application/json',url: rootURL,dataType: "json",	data: formToJSON(),
+		success: function(data, textStatus, jqXHR){
+			alert('smurf created successfully');             
+		},
+		error: function(jqXHR, textStatus, errorThrown){
+			alert('createSmurf error: ' + textStatus);
+		}
+	});
+};
+//update clicked
+var updateSmurf=function () {	
+	$.ajax({
+		type: 'PUT', contentType: 'application/json', url: rootURL+'/'+$('#smurf_id').val(),dataType: "json",data: formToJSON(),	
+		success: function(data, textStatus, jqXHR){
+			alert('smurf updated successfully');             
+		},
+		error: function(jqXHR, textStatus, errorThrown){
+			alert('updateSmurf error: ' + textStatus);
+		}
 	});
 };
 
-
+//--------
+	
 //--------------------------------------------------------------------------------------------------------------------
 //When the DOM is ready.
 $(document).ready(function(){
@@ -203,77 +97,47 @@ $(document).ready(function(){
 		
 	});
 	
-	$("#productsPage").click(function(){
+	$("#productsPage").click(function(){		
 		$('#productList .row').html('');
 		showAllSmurfs();
+		
 	});	
 		
-	$("#adminPage").click(function(){
+	$("#adminPage").click(function(){		
 		showDataTable();
+		$('#saveButton').hide();
+		
 	});
 	
-
-	
-	
-	
-	
-	
-	// Nothing to delete in initial application state
-	$('#btnDelete').hide();
-
-	// Register listeners
-	$('#btnSearch').click(function() {
-		search($('#searchKey').val());
-		return false;
+	$('#newButton').click(function() {
+		$('#newButton').prop('disabled', true);		$('#deleteButton').prop('disabled', true);		$('#updateButton').hide();		$('#saveButton').show();		$('#smurf_id').val("");		$('#smurf_id').prop('disabled', true);		$('#smurf_name').val("");		$('#smurf_instock').val("");		$('#smurf_price').val("");		$('#smurf_material').val("");		$('#smurf_supplier').val("");		$('#smurf_image').val("");		$('#smurf_description').val("");		$('#smurf_size').val("");		
+		
+	});
+	$('#saveButton').click(function() {
+		createSmurf();
+		showDataTable();
+		
 	});
 
-	// Trigger search when pressing 'Return' on search key input field
-	$('#searchKey').keypress(function(e){
-		if(e.which == 13) {
-			search($('#searchKey').val());
-			e.preventDefault();
-			return false;
-	    }
+	$('#updateButton').click(function() {
+		updateSmurf();
+		showDataTable();
+		
 	});
-
-	$('#btnAdd').click(function() {
-		newWine();
-		return false;
+	$('#deleteButton').click(function() {
+		deleteSmurf();
+		showDataTable();
+		
 	});
-
-	$('#btnSave').click(function() {
-		if ($('#wineId').val() == '')
-			addWine();
-		else
-			updateWine();
-		return false;
-	});
-
-	$('#btnDelete').click(function() {
-		deleteWine();
-		return false;
-	});
-
-	//$('#wineList a').on("click",function() {
-	//	findById($(this).data('identity'));
-	//});
 	
-	$(document).on("click", '#wineList a', function(){findById(this.id);});
-
-	// Replace broken images with generic wine bottle
-	$("img").error(function(){
-	  $(this).attr("src", "pics/generic.jpg");
-
-	});
-	//reset form
-	$('#wineId').val("");
-	$('#name').val("");
-	$('#grapes').val("");
-	$('#country').val("");
-	$('#region').val("");
-	$('#year').val("");
-	$('#pic').attr('src', "");
-	$('#description').val("");
-	//findAll();
+	//click edit button
+	//https://jqueryui.com/dialog/#modal-form modal popup.
+	$('#adminTable tbody').on( 'click', 'button', function () {
+		$('#deleteButton').prop('disabled', false);		$('#newButton').prop('disabled', false);		$('#saveButton').hide();		$('#updateButton').show();        
+		var element = admin_table.row( $(this).parents('tr') ).data();		
+		$('#smurf_id').val(element.id);		$('#smurf_id').prop('disabled', true);		$('#smurf_name').val(element.name);		$('#smurf_instock').val(element.instock);		$('#smurf_price').val(element.price);		$('#smurf_material').val(element.material);		$('#smurf_supplier').val(element.supplier);		$('#smurf_image').val(element.image);		$('#smurf_description').val(element.description);		$('#smurf_size').val(element.size);		
+    } );
+	
+	
 });
 

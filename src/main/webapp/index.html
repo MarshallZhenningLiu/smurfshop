@@ -4,14 +4,11 @@
 	<title>SmurfShop</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-
 	
 	<link rel="stylesheet" href="css/font-awesome.css" />
 	<link rel="stylesheet" href="css/jquery.dataTables.css" />
 	<link rel="stylesheet" href="css/bootstrapV4.css" />
 	<link rel="stylesheet" href="css/styles.css" />
-
-
 
 </head>
 
@@ -40,7 +37,7 @@
 					<div class="tab-pane active" id="home">
 						<h3 class="centerTitle">Home Page</h3>
 						
-						<button type="button" id="buttontest">Click Me!</button>
+						<button type="button" id="buttontest">Click Me--!</button>
 						
 						
 						
@@ -59,10 +56,74 @@
 					<div class="tab-pane" id="admin">
 						<h3 class="centerTitle">Admin</h3>
 						<div id="dataTable">
-							<table id="smurfTable" class="display" width="100%">
-								<!-- JS generates content here...-->
-								
-							</table>
+						
+						<!--Datatable-->
+						<table id="adminTable" class="display" cellspacing="0" width="100%">
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>Name</th>
+									<th>InStock</th>
+									<th>Price</th>									
+									<th>Size</th>
+									<th>Material</th>
+									<th>Supplier</th>
+									<th>Edit</th>
+								</tr>
+							</thead>
+							<!-- Datatable generates content here...-->
+							<tfoot>
+								<tr>
+									<th>ID</th>
+									<th>Name</th>
+									<th>InStock</th>
+									<th>Price</th>									
+									<th>Size</th>
+									<th>Material</th>
+									<th>Supplier</th>
+									<th>Edit</th>
+								</tr>
+							</tfoot>
+						</table>
+						<!--end Datatable-->
+						
+						<!--popup modal https://www.w3schools.com/bootstrap4/bootstrap_modal.asp-->	
+						<div class="modal fade" id="myModal">
+							<div class="modal-dialog modal-dialog-centered">
+								<div class="modal-content">
+
+									<!-- Modal Header -->
+									<div class="modal-header">
+										<h4 class="modal-title">Edit Smurf</h4>
+										<button type="button" class="close" data-dismiss="modal">&times;</button>
+									</div>
+
+									<!-- Modal body -->
+									<div class="modal-body">
+										<label>Id: </label><input type="text" id="smurf_id">
+										<label>Name: </label><input type="text"  id="smurf_name">
+										<label>InStock: </label><input type="text"  id="smurf_instock">
+										<label>Price: </label><input type="text" id="smurf_price">										
+										<label>Size: </label><input type="text" id="smurf_size">
+										<label>Material: </label><input type="text"  id="smurf_material">
+										<label>Supplier: </label><input type="text"  id="smurf_supplier">
+										<label>Image: </label><input type="text"  id="smurf_image">
+										<label>Description: </label><input type="text"  id="smurf_description">										
+									</div>
+
+									<!-- Modal footer -->
+									<div class="modal-footer">
+										<button type="button" class="btn btn-danger btn-crud" id="newButton">New</button>
+										<button type="button" class="btn btn-danger btn-crud" id="saveButton" data-dismiss="modal">Save</button>
+										<button type="button" class="btn btn-danger btn-crud" id="updateButton" data-dismiss="modal">Update</button>
+										<button type="button" class="btn btn-danger btn-crud" id="deleteButton" data-dismiss="modal">Delete</button>
+									</div>
+
+								</div>
+							</div>
+						</div>						
+						<!--end popup modal-->	
+							
 						</div>
 					</div>
 				</div>
@@ -71,10 +132,6 @@
 	
 	
 
-
-		<div class="leftArea">
-			<ul id="wineList"></ul>
-		</div>
 
 
 	</div>

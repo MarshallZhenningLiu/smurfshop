@@ -48,9 +48,17 @@ public class SmurfWS {
 	@Consumes({ MediaType.APPLICATION_JSON })
 	@Produces({ MediaType.APPLICATION_JSON })
 	public Response saveSmurf(Smurf smurf) {
+		if(smurf.getId()<1) {smurf.setId( findSmurfMaxId() );}
 		smurfDao.save(smurf);
 		return Response.status(201).entity(smurf).build();
 	}
+	
+	public int findSmurfMaxId() {
+		Smurf smurf = smurfDao.getSmurfMaxId().get(0);
+		if(smurf.getId()>0) return smurf.getId()+1;
+		return 0;
+	}
+	
 	
 	@PUT
 	@Path("/{id}")
