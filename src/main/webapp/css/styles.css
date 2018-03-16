@@ -4,7 +4,7 @@
 	font-family: 'Montserrat', sans-serif;
 }
 
-#container{ width: 80%;  margin: 0 auto; }
+#container{ width: 100%;  margin: 0 auto; }
 .left{ float:left;}
 .shoptitle{ padding-left:130px; padding-top:20px;
 border:0px solid gray;
@@ -19,7 +19,7 @@ label{    display: inline-block;    float: left;    clear: left;    width: 130px
 
 .center {    display: block;    margin-left: auto;    margin-right: auto;    width: 80%;}
 
-.smurf-image{ width: 60%; height:80%; border: 0px solid gray;}
+.smurf-image{ width: 30%; height:40%; border: 0px solid gray;}
 .card{border: 0px solid gray;}
 
 
