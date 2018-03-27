@@ -132,6 +132,7 @@
 				<p class="center">Price: <%= price %> </p>
 				<p class="center"> <%= description %> </p>		
 	</script>
+	<!-- 
 	<script type="text/html" id="smurfTableTemplate">			
 				<thead><tr>
 							<th>ID</th><th>Name</th><th>InStock</th><th>Price</th><th>Size</th><th>Material</th><th>Supplier</th><th>Edit</th>
@@ -148,7 +149,7 @@
 							<th>ID</th><th>Name</th><th>InStock</th><th>Price</th><th>Size</th><th>Material</th><th>Supplier</th><th>Edit</th>
 				</tr></tfoot>	
 	</script>
-	
+	 -->
 	<script type="text/html" id="smurfModalTemplate">			
 				<label>Id: </label><input type="text" id="smurf_id" class="input-dialogbox" value="<%=id%> " disabled>
 				<label>Name: </label><input type="text"  id="smurf_name" class="input-dialogbox" value="<%=name%>" required>
@@ -159,37 +160,6 @@
 				<label>Supplier: </label><input type="text"  id="smurf_supplier" class="input-dialogbox" value="<%=supplier%>">
 				<label>Image: </label><input type="text"  id="smurf_image" class="input-dialogbox" value="<%=image%>">
 				<label>Description: </label><input type="text"  id="smurf_description" class="input-dialogbox" value="<%=description%>">		
-	</script>
-	
-	
-	<script type="text/template" id="wine_list">
-		<li><a href="#" id=<%=id%>><%=name%></a></li>	
-	</script>
-	<script type="text/template" id="wine-details">
-		<button id="btnAdd">New Wine</button>
-		<div class="form-left-col">
-
-		<label>Id:</label>
-		<input id="wineId" name="id" type="text" value="<%= id %> "disabled />
-		<label>Name:</label>
-		<input type="text" id="name" name="name" value="<%= name %>" required/>
-		<label>Grapes:</label>
-		<input type="text" id="grapes" name="grapes" value="<%= grapes %>"/>
-		<label>Country:</label>
-		<input type="text" id="country" name="country" value="<%= country %>"/>
-		<label>Region:</label>
-		<input type="text" id="region" name="region"  value="<%= region %>"/>
-		<label>Year:</label>
-		<input type="text" id="year" name="year"  value="<%= year %>"/>
-		<br>
-		<button id="btnSave">Save</button>
-		<button id="btnDelete">Delete</button>
-		</div>
-		<div id="rightArea">
-		<img height="300" src="pics/<%= picture %>"/>
-		<label>Notes:</label>
-		<textarea id="description" name="description"><%= description %></textarea>
-		</div>
 	</script>
 	
 	<script src="js/mainBackBone.js"></script>
