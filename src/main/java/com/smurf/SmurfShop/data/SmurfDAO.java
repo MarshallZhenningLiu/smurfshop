@@ -1,6 +1,7 @@
 package com.smurf.SmurfShop.data;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -16,6 +17,9 @@ public class SmurfDAO {
 
     @PersistenceContext
     private EntityManager em;
+
+    private final static Logger LOG = Logger.getLogger(SmurfDAO.class.getName());
+	
     
 	@SuppressWarnings("unchecked")
 	public List<Smurf> getAllSmurf() {
@@ -41,16 +45,18 @@ public class SmurfDAO {
     }
 	
 	public void save(Smurf smurf){
-		
+		LOG.info("-----------line 48: save..");
 		
 		em.persist(smurf);
 	}
 	
 	public void update(Smurf smurf) {
+		LOG.info("-----------line 54: upate..");
 		em.merge(smurf);
 	}
 	
 	public void delete(int id) {
+		LOG.info("-----------line 59: delete..");
 		em.remove(getSmurf(id));
 	}
 	public void deleteTable(){

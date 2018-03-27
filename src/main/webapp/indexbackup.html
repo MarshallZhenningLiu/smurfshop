@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<title>SmurfShop</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<link rel="stylesheet" href="css/font-awesome.css" />
+	<link rel="stylesheet" href="css/jquery.dataTables.css" />
+	<link rel="stylesheet" href="css/bootstrapV4.css" />
+	<link rel="stylesheet" href="css/styles.css" />
+
+</head>
+
+<body>
+	<div id="container">
+	<!-- header                                           -->
+		<div class="Header">
+			<div class="left">
+				<img src="Smurf.jpg" alt="default smurf" >
+			</div>
+			<div class="shoptitle">
+				<h1>Smurf Shop</h1>
+				<h3>The best and the only shop selling smurfs! </h3>
+			</div>
+		</div>
+		<br><br><br>
+	<!-- header ends                                          -->	
+		<div id="tabs">
+			<section>
+				<ul class="nav nav-tabs" role="tablist">
+					<li class="nav-item"><a id = "homePage" class="nav-link active" data-toggle="tab" href="#home" role="tab"><span class="fa fa-home fa-lg"></span> Home</a>  </li>
+					<li class="nav-item"><a id = "productsPage" class="nav-link" data-toggle="tab" href="#view" role="tab"><span class="fa fa-list fa-lg">Products</a>  </li>
+					<li class="nav-item"><a id = "adminPage" class="nav-link" data-toggle="tab" href="#admin" role="tab"><span class="fa fa-user-circle fa-lg">Admin</a>  </li>
+				</ul>
+		<!-- Tab panes -->
+				<div class="tab-content">
+					<div class="tab-pane active" id="home">
+						<h3 class="centerTitle">Home Page</h3>						
+						<img src="smurfshopfrontpage.jpg" alt="smurfshop"  class="center">						
+					</div>
+			   
+					<div id="view" class="tab-pane" >
+						<h3 class="centerTitle" id="products">Products</h3>   
+						<div id="productList">
+							<div class="row">							
+								<!-- JS generates content here...-->
+							
+							</div>
+						</div>
+					</div>
+					
+					<div class="tab-pane" id="admin">
+						<h3 class="centerTitle">Admin</h3>
+						<div id="dataTable">
+						
+						<!--Datatable-->
+						<table id="adminTable" class="display" cellspacing="0" width="100%">
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>Name</th>
+									<th>InStock</th>
+									<th>Price</th>									
+									<th>Size</th>
+									<th>Material</th>
+									<th>Supplier</th>
+									<th>Edit</th>
+								</tr>
+							</thead>
+							<!-- Datatable generates content here...-->
+							<tfoot>
+								<tr>
+									<th>ID</th>
+									<th>Name</th>
+									<th>InStock</th>
+									<th>Price</th>									
+									<th>Size</th>
+									<th>Material</th>
+									<th>Supplier</th>
+									<th>Edit</th>
+								</tr>
+							</tfoot>
+						</table>
+						<!--end Datatable-->
+						
+						<!--popup modal https://www.w3schools.com/bootstrap4/bootstrap_modal.asp-->	
+						<div class="modal fade" id="myModal">
+							<div class="modal-dialog modal-dialog-centered">
+								<div class="modal-content">
+
+									<!-- Modal Header -->
+									<div class="modal-header">
+										<h4 class="modal-title">Edit Smurf</h4>
+										<button type="button" class="close" data-dismiss="modal">&times;</button>
+									</div>
+
+									<!-- Modal body -->
+									<div class="modal-body">
+										<label>Id: </label><input type="text" id="smurf_id" class="input-dialogbox">
+										<label>Name: </label><input type="text"  id="smurf_name" class="input-dialogbox">
+										<label>InStock: </label><input type="text"  id="smurf_instock" class="input-dialogbox">
+										<label>Price: </label><input type="text" id="smurf_price" class="input-dialogbox">										
+										<label>Size: </label><input type="text" id="smurf_size" class="input-dialogbox">
+										<label>Material: </label><input type="text"  id="smurf_material" class="input-dialogbox">
+										<label>Supplier: </label><input type="text"  id="smurf_supplier" class="input-dialogbox">
+										<label>Image: </label><input type="text"  id="smurf_image" class="input-dialogbox">
+										<label>Description: </label><input type="text"  id="smurf_description" class="input-dialogbox">										
+									</div>
+
+									<!-- Modal footer -->
+									<div class="modal-footer">
+										<button type="button" class="btn btn-danger btn-crud" id="newButton">New</button>
+										<button type="button" class="btn btn-danger btn-crud" id="saveButton" data-dismiss="modal">Save</button>
+										<button type="button" class="btn btn-danger btn-crud" id="updateButton" data-dismiss="modal">Update</button>
+										<button type="button" class="btn btn-danger btn-crud" id="deleteButton" data-dismiss="modal">Delete</button>
+									</div>
+
+								</div>
+							</div>
+						</div>						
+						<!--end popup modal-->	
+							
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+	
+	
+
+
+
+	</div>
+	
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery.dataTables.js"></script>
+	<script src="js/popper.min.js"></script>
+	<script src="js/bootstrapV4.js"></script>
+	
+	<script src="js/main.js"></script>
+	
+</body>
+</html>

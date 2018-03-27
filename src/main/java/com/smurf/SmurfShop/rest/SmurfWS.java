@@ -1,6 +1,8 @@
 package com.smurf.SmurfShop.rest;
 
 import java.util.List;
+import java.util.logging.Logger;
+
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.ejb.EJB;
@@ -28,6 +30,8 @@ public class SmurfWS {
 	@EJB
 	private SmurfDAO smurfDao;
 	
+	private final static Logger LOG = Logger.getLogger(SmurfWS.class.getName());
+	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response findAllSmurfs() {
@@ -48,8 +52,10 @@ public class SmurfWS {
 	@Consumes({ MediaType.APPLICATION_JSON })
 	@Produces({ MediaType.APPLICATION_JSON })
 	public Response saveSmurf(Smurf smurf) {
+		LOG.info("---------line 55: post /save");
 		if(smurf.getId()<1) {smurf.setId( findSmurfMaxId() );}
 		smurfDao.save(smurf);
+		LOG.info("---------line 58: new smurf id is " +smurf.getId());
 		return Response.status(201).entity(smurf).build();
 	}
 	
@@ -65,9 +71,10 @@ public class SmurfWS {
 	@Consumes({ MediaType.APPLICATION_JSON })
 	@Produces({ MediaType.APPLICATION_JSON })
 	public Response updateSmurf(Smurf smurf, @PathParam("id") int id) {
-		System.out.println("----------id is " + smurf.getId());
+		LOG.info("---------line 73: put");
+		System.out.println("----------line 74 id is " + smurf.getId());
 		smurf.setId(id);
-		System.out.println("----------id is " + smurf.getId());
+		System.out.println("----------line 77 id is " + smurf.getId());
 		smurfDao.update(smurf);
 		System.out.println("----------id is " + smurf.getId() + smurf.getInstock());
 		//this is test jenkins
@@ -78,6 +85,7 @@ public class SmurfWS {
 	@DELETE
 	@Path("/{id}")
 	public Response deleteSmurf(@PathParam("id") int id) {
+		LOG.info("---------line 87: delete");
 		smurfDao.delete(id);
 		return Response.status(204).build();
 	}

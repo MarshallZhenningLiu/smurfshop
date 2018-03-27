@@ -14,7 +14,7 @@
 
 <body>
 	<div id="container">
-	<!-- header                                           -->
+	<!------------------------------------------------------------ header        -->	
 		<div class="Header">
 			<div class="left">
 				<img src="Smurf.jpg" alt="default smurf" >
@@ -25,7 +25,7 @@
 			</div>
 		</div>
 		<br><br><br>
-	<!-- header ends                                          -->	
+	<!------------------------------------------------------------ header ends  -->	
 		<div id="tabs">
 			<section>
 				<ul class="nav nav-tabs" role="tablist">
@@ -33,112 +33,166 @@
 					<li class="nav-item"><a id = "productsPage" class="nav-link" data-toggle="tab" href="#view" role="tab"><span class="fa fa-list fa-lg">Products</a>  </li>
 					<li class="nav-item"><a id = "adminPage" class="nav-link" data-toggle="tab" href="#admin" role="tab"><span class="fa fa-user-circle fa-lg">Admin</a>  </li>
 				</ul>
-		<!-- Tab panes -->
+				
+				<!-------------------------------------------------------------------------------- Tab panes -->
 				<div class="tab-content">
+					<!---------------------------------------------------------------------- Tab homepage -->
 					<div class="tab-pane active" id="home">
 						<h3 class="centerTitle">Home Page</h3>						
 						<img src="smurfshopfrontpage.jpg" alt="smurfshop"  class="center">						
 					</div>
 			   
+			   		<!---------------------------------------------------------------------- Tab productspage -->
 					<div id="view" class="tab-pane" >
 						<h3 class="centerTitle" id="products">Products</h3>   
-						<div id="productList">
-							<div class="row">							
-								<!-- JS generates content here...-->
-							
-							</div>
+						<div id="productList" class="row">					
+										<!-- backbone render smurfsView here -->
+			
 						</div>
 					</div>
 					
+					<!---------------------------------------------------------------------- Tab adminpage -->
 					<div class="tab-pane" id="admin">
-						<h3 class="centerTitle">Admin</h3>
-						<div id="dataTable">
+								<h3 class="centerTitle">Admin</h3>
+								<div id="dataTable">
+								
+								<!--Datatable-->
+								<table id="adminTable" class="display" cellspacing="0" width="100%">
+									<thead>
+										<tr>
+											<th>ID</th><th>Name</th><th>InStock</th><th>Price</th><th>Size</th><th>Material</th><th>Supplier</th><th>Edit</th>
+										</tr>
+									</thead>
+									
+									<tfoot>
+										<tr>
+											<th>ID</th><th>Name</th><th>InStock</th><th>Price</th><th>Size</th><th>Material</th><th>Supplier</th><th>Edit</th>
+										</tr>
+									</tfoot>
+								</table>
+								<!--end Datatable-->
 						
-						<!--Datatable-->
-						<table id="adminTable" class="display" cellspacing="0" width="100%">
-							<thead>
-								<tr>
-									<th>ID</th>
-									<th>Name</th>
-									<th>InStock</th>
-									<th>Price</th>									
-									<th>Size</th>
-									<th>Material</th>
-									<th>Supplier</th>
-									<th>Edit</th>
-								</tr>
-							</thead>
-							<!-- Datatable generates content here...-->
-							<tfoot>
-								<tr>
-									<th>ID</th>
-									<th>Name</th>
-									<th>InStock</th>
-									<th>Price</th>									
-									<th>Size</th>
-									<th>Material</th>
-									<th>Supplier</th>
-									<th>Edit</th>
-								</tr>
-							</tfoot>
-						</table>
-						<!--end Datatable-->
+								<!--popup modal https://www.w3schools.com/bootstrap4/bootstrap_modal.asp-->	
+								<div class="modal fade" id="myModal">
+									<div class="modal-dialog modal-dialog-centered">
+										<div class="modal-content">
+		
+											<!-- Modal Header -->
+											<div class="modal-header">
+												<h4 class="modal-title">Edit Smurf</h4>
+												<button type="button" class="close" data-dismiss="modal">&times;</button>
+											</div>
+		
+											<!-- Modal body -->
+											<div class="modal-body" id="modalBody">
+												<!-- <label>Id: </label><input type="text" id="smurf_id" class="input-dialogbox">
+												<label>Name: </label><input type="text"  id="smurf_name" class="input-dialogbox">
+												<label>InStock: </label><input type="text"  id="smurf_instock" class="input-dialogbox">
+												<label>Price: </label><input type="text" id="smurf_price" class="input-dialogbox">										
+												<label>Size: </label><input type="text" id="smurf_size" class="input-dialogbox">
+												<label>Material: </label><input type="text"  id="smurf_material" class="input-dialogbox">
+												<label>Supplier: </label><input type="text"  id="smurf_supplier" class="input-dialogbox">
+												<label>Image: </label><input type="text"  id="smurf_image" class="input-dialogbox">
+												<label>Description: </label><input type="text"  id="smurf_description" class="input-dialogbox">		 -->								
+											</div>
+		
+											<!-- Modal footer -->
+											<div class="modal-footer">
+												<button type="button" class="btn btn-danger btn-crud" id="newButton">New</button>
+												<button type="button" class="btn btn-danger btn-crud" id="saveButton" data-dismiss="modal">Save</button>
+												<button type="button" class="btn btn-danger btn-crud" id="updateButton" data-dismiss="modal">Update</button>
+												<button type="button" class="btn btn-danger btn-crud" id="deleteButton" data-dismiss="modal">Delete</button>
+											</div>
+		
+										</div>
+									</div>
+								</div>						
+								<!--end popup modal-->							
 						
-						<!--popup modal https://www.w3schools.com/bootstrap4/bootstrap_modal.asp-->	
-						<div class="modal fade" id="myModal">
-							<div class="modal-dialog modal-dialog-centered">
-								<div class="modal-content">
-
-									<!-- Modal Header -->
-									<div class="modal-header">
-										<h4 class="modal-title">Edit Smurf</h4>
-										<button type="button" class="close" data-dismiss="modal">&times;</button>
-									</div>
-
-									<!-- Modal body -->
-									<div class="modal-body">
-										<label>Id: </label><input type="text" id="smurf_id" class="input-dialogbox">
-										<label>Name: </label><input type="text"  id="smurf_name" class="input-dialogbox">
-										<label>InStock: </label><input type="text"  id="smurf_instock" class="input-dialogbox">
-										<label>Price: </label><input type="text" id="smurf_price" class="input-dialogbox">										
-										<label>Size: </label><input type="text" id="smurf_size" class="input-dialogbox">
-										<label>Material: </label><input type="text"  id="smurf_material" class="input-dialogbox">
-										<label>Supplier: </label><input type="text"  id="smurf_supplier" class="input-dialogbox">
-										<label>Image: </label><input type="text"  id="smurf_image" class="input-dialogbox">
-										<label>Description: </label><input type="text"  id="smurf_description" class="input-dialogbox">										
-									</div>
-
-									<!-- Modal footer -->
-									<div class="modal-footer">
-										<button type="button" class="btn btn-danger btn-crud" id="newButton">New</button>
-										<button type="button" class="btn btn-danger btn-crud" id="saveButton" data-dismiss="modal">Save</button>
-										<button type="button" class="btn btn-danger btn-crud" id="updateButton" data-dismiss="modal">Update</button>
-										<button type="button" class="btn btn-danger btn-crud" id="deleteButton" data-dismiss="modal">Delete</button>
-									</div>
-
-								</div>
-							</div>
-						</div>						
-						<!--end popup modal-->	
-							
-						</div>
 					</div>
+					<!---------------------------------------------------------------------- End Tab adminpage -->
 				</div>
+				<!--------------------------------------------------------------------------------------------End Tab panes -->
 			</section>
-		</div>
+		</div><!-- div tabs -->
 	
+	</div><!-- div container -->
 	
-
-
-
-	</div>
-	
-	<script src="js/jquery.js"></script>
+	<!--  script src="js/jquery.js"></script -->	
+	<script src="js/jquery-3.2.1.min.js"></script>	
 	<script src="js/jquery.dataTables.js"></script>
 	<script src="js/popper.min.js"></script>
 	<script src="js/bootstrapV4.js"></script>
+    <script src="js/underscore-min.js"></script>
+    <script src="js/backbone-min.js"></script>	
 	
-	<script src="js/main.js"></script>
+	<script type="text/html" id="smurfTemplate">			
+				<img src="<%= image %>" class="smurf-image center">
+				<p class="center">Name: <%= name %> </p>
+				<p class="center">Price: <%= price %> </p>
+				<p class="center"> <%= description %> </p>		
+	</script>
+	<script type="text/html" id="smurfTableTemplate">			
+				<thead><tr>
+							<th>ID</th><th>Name</th><th>InStock</th><th>Price</th><th>Size</th><th>Material</th><th>Supplier</th><th>Edit</th>
+				</tr></thead>
+				<tbody>
+							<% _.each(smurfs, function( smurf ){ %> 
+							<tr>
+								<td><%=smurf.get('id')%></td><td><%=smurf.get('name')%></td><td><%= smurf.get('instock') %></td><td><%= smurf.get('price') %></td><td><%= smurf.get('size') %></td><td><%= smurf.get('material') %></td><td><%= smurf.get('supplier') %></td>
+								<td>Edit</td>								
+							</tr>
+							<% }) %>
+				</tbody>
+				<tfoot><tr>
+							<th>ID</th><th>Name</th><th>InStock</th><th>Price</th><th>Size</th><th>Material</th><th>Supplier</th><th>Edit</th>
+				</tr></tfoot>	
+	</script>
+	
+	<script type="text/html" id="smurfModalTemplate">			
+				<label>Id: </label><input type="text" id="smurf_id" class="input-dialogbox" value="<%=id%> " disabled>
+				<label>Name: </label><input type="text"  id="smurf_name" class="input-dialogbox" value="<%=name%>" required>
+				<label>InStock: </label><input type="text"  id="smurf_instock" class="input-dialogbox" value="<%=instock%>">
+				<label>Price: </label><input type="text" id="smurf_price" class="input-dialogbox" value="<%=price%>">										
+				<label>Size: </label><input type="text" id="smurf_size" class="input-dialogbox" value="<%=size%>">
+				<label>Material: </label><input type="text"  id="smurf_material" class="input-dialogbox" value="<%=material%>">
+				<label>Supplier: </label><input type="text"  id="smurf_supplier" class="input-dialogbox" value="<%=supplier%>">
+				<label>Image: </label><input type="text"  id="smurf_image" class="input-dialogbox" value="<%=image%>">
+				<label>Description: </label><input type="text"  id="smurf_description" class="input-dialogbox" value="<%=description%>">		
+	</script>
+	
+	
+	<script type="text/template" id="wine_list">
+		<li><a href="#" id=<%=id%>><%=name%></a></li>	
+	</script>
+	<script type="text/template" id="wine-details">
+		<button id="btnAdd">New Wine</button>
+		<div class="form-left-col">
+
+		<label>Id:</label>
+		<input id="wineId" name="id" type="text" value="<%= id %> "disabled />
+		<label>Name:</label>
+		<input type="text" id="name" name="name" value="<%= name %>" required/>
+		<label>Grapes:</label>
+		<input type="text" id="grapes" name="grapes" value="<%= grapes %>"/>
+		<label>Country:</label>
+		<input type="text" id="country" name="country" value="<%= country %>"/>
+		<label>Region:</label>
+		<input type="text" id="region" name="region"  value="<%= region %>"/>
+		<label>Year:</label>
+		<input type="text" id="year" name="year"  value="<%= year %>"/>
+		<br>
+		<button id="btnSave">Save</button>
+		<button id="btnDelete">Delete</button>
+		</div>
+		<div id="rightArea">
+		<img height="300" src="pics/<%= picture %>"/>
+		<label>Notes:</label>
+		<textarea id="description" name="description"><%= description %></textarea>
+		</div>
+	</script>
+	
+	<script src="js/mainBackBone.js"></script>
 	
 </body>
 </html>
